@@ -7,15 +7,20 @@ let gameBtn = document.querySelector("#gameStart");
 let text = document.querySelector("#gameHistory");
 let turns = 0;
 let compTurn = 0;
+let gameStart = false;
 
 const players = ["You", "Computer"];
 
 btn1.addEventListener("click", function () {
-  sub1(0);
+  if (gameStart === true) {
+    sub1(0);
+  }
 });
 
 btn2.addEventListener("click", function () {
-  sub2(0);
+  if (gameStart === true) {
+    sub2(0);
+  }
 });
 
 function sub1(x) {
@@ -27,17 +32,16 @@ function sub1(x) {
   }
 
   if (intNum > 0) {
-    text.scrollTop = text.scrollHeight;
-
     intNum -= 1;
     numHTML.innerHTML = intNum;
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 1. Now ${intNum}.`;
-  } else {
-    text.value = `\nCurrent Value is now 0. You Lose!`;
   }
   turns++;
-  if (turns % 2 == 1) {
+
+  text.scrollTop = text.scrollHeight;
+
+  if (turns % 2 === 1) {
     computerTurn();
   }
 }
@@ -51,15 +55,19 @@ function sub2(x) {
   }
 
   if (intNum > 1) {
-    text.scrollTop = text.scrollHeight;
-
     intNum -= 2;
     numHTML.innerHTML = intNum;
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 2. Now ${intNum}.`;
+    turns++;
+  } else {
+    text.value =
+      text.value + `\nCan't subtract by 2! Please click subtract by 1.`;
   }
-  turns++;
-  if (turns % 2 == 1) {
+
+  text.scrollTop = text.scrollHeight;
+
+  if (turns % 2 === 1) {
     computerTurn();
   }
 }
@@ -69,6 +77,7 @@ gameBtn.addEventListener("click", function () {
 });
 
 function startGame() {
+  gameStart = true;
   turns = 0;
   compTurn = 0;
   numHTML.innerHTML = 22;
@@ -78,28 +87,30 @@ function startGame() {
 
 function computerTurn() {
   console.log(compTurn);
-  if (intNum == 0) {
-
-  }
-  if (compTurn % 2 == 0) {
-    if (intNum % 2 == 0) {
-      sub1(1);
-      console.log("subtracting 2 cause turn is even, num was even");
-      compTurn++;
-    } else {
-      sub2(1);
-      console.log("subtracting 1 cause turn is even, num was odd");
-      compTurn++;
-    }
+  if (intNum === 0) {
+    text.value = `Current Value is now 0. You Lose!`;
+    gameStart = false;
   } else {
-    if (intNum % 2 == 0) {
-      sub2(1);
-      console.log("subtracting 1 cause turn is odd, num was even");
-      compTurn++;
+    if (compTurn % 2 === 0 && intNum != 0) {
+      if (intNum % 2 === 0) {
+        sub1(1);
+        console.log("subtracting 2 cause turn is even, num was even");
+        compTurn++;
+      } else {
+        sub2(1);
+        console.log("subtracting 1 cause turn is even, num was odd");
+        compTurn++;
+      }
     } else {
-      sub1(1);
-      console.log("subtracting 2 cause turn is odd, num was odd");
-      compTurn++;
+      if (intNum % 2 === 0) {
+        sub2(1);
+        console.log("subtracting 1 cause turn is odd, num was even");
+        compTurn++;
+      } else {
+        sub1(1);
+        console.log("subtracting 2 cause turn is odd, num was odd");
+        compTurn++;
+      }
     }
   }
 }
