@@ -6,7 +6,6 @@ let btn2 = document.querySelector("#sub2");
 let gameBtn = document.querySelector("#gameStart");
 let text = document.querySelector("#gameHistory");
 let turns = 0;
-let compTurn = 0;
 let gameStart = false;
 let slider = document.getElementById("sliderVal");
 
@@ -42,7 +41,7 @@ function sub1(x) {
     intNum -= 1;
     numHTML.innerHTML = intNum;
     text.value =
-      text.value + `\n${whoIsPlaying} subtracted by 1. Now ${intNum}.`;
+      text.value + `\n${whoIsPlaying} subtracted by 1. Now the value is ${intNum}.`;
   }
   turns++;
 
@@ -65,7 +64,7 @@ function sub2(x) {
     intNum -= 2;
     numHTML.innerHTML = intNum;
     text.value =
-      text.value + `\n${whoIsPlaying} subtracted by 2. Now ${intNum}.`;
+      text.value + `\n${whoIsPlaying} subtracted by 2. Now the value is ${intNum}.`;
     turns++;
   } else {
     text.value =
@@ -80,21 +79,29 @@ function sub2(x) {
 }
 
 gameBtn.addEventListener("click", function () {
-  startGame();
+  if (gameStart === false) {
+    startGame();
+  }
 });
+
+let compTurn;
 
 function startGame() {
   gameStart = true;
   turns = 0;
-  compTurn = 0;
   numHTML.innerHTML = slider.value;
   intNum = slider.value;
-  text.value = "Game Start! Go first.";
+  if (intNum % 2 === 0) {
+    compTurn = 0;
+  } else {
+    compTurn = 1;
+  }
+  text.value = `The game has begun with the starting value of ${intNum}. Go first!`;
 }
 
 function computerTurn() {
   if (intNum === 0) {
-    text.value = `Current Value is now 0. You Lose!`;
+    text.value = `You removed the last stone! You lost.\nUse the slider to try another starting number.\nThen press "Start Game" to try again!`;
     gameStart = false;
   } else {
     if (compTurn % 2 === 0 && intNum != 0) {
