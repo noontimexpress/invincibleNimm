@@ -1,0 +1,33 @@
+body {
+  background: no-repeat center center fixed;
+  background-image: linear-gradient(#ffffff, #838fce);
+  background-size: auto cover contain;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  padding: 30px;
+  text-align: center;
+}
+
+#title {
+  font-size: 40px;
+}
+
+#number {
+  padding: 20px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.container {
+  padding: 20px;
+  max-width: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+textarea {
+  width: 500px;
+  border-radius: 10px;
+}
