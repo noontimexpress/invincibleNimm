@@ -6,6 +6,7 @@ let btn2 = document.querySelector("#sub2");
 let gameBtn = document.querySelector("#gameStart");
 let text = document.querySelector("#gameHistory");
 let turns = 0;
+let compTurn = 0;
 
 const players = ["You", "Computer"];
 
@@ -29,7 +30,6 @@ function sub1(x) {
     text.scrollTop = text.scrollHeight;
 
     intNum -= 1;
-    console.log(intNum);
     numHTML.innerHTML = intNum;
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 1. Now ${intNum}.`;
@@ -37,7 +37,7 @@ function sub1(x) {
     text.value = `\nCurrent Value is now 0. You Lose!` 
   }
   turns++;
-  if ((turns % 2 == 1) || (turns == 1)) {
+  if (turns % 2 == 1) {
     computerTurn();
   }
 }
@@ -54,7 +54,6 @@ function sub2(x) {
     text.scrollTop = text.scrollHeight;
 
     intNum -= 2;
-    console.log(intNum);
     numHTML.innerHTML = intNum;
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 2. Now ${intNum}.`;
@@ -70,15 +69,34 @@ gameBtn.addEventListener("click", function () {
 });
 
 function startGame() {
-  numHTML.innerHTML = 20;
-  intNum = 20;
+  turns = 0;
+  compTurn = 0;
+  numHTML.innerHTML = 21;
+  intNum = 21;
   text.value = "Game Start! Go first.";
 }
 
 function computerTurn() {
-  if (numHTML % 2 == 0 || () {
-    sub1(1);
+  console.log(compTurn);  
+  if (compTurn % 2 == 0) {
+    if (intNum % 2 == 0) {
+      sub1(1);
+      console.log('subtracting 2 cause turn is even');
+      compTurn++;
+    } else {
+      sub2(1);
+      console.log('subtracting 1 cause turn is even');
+      compTurn++;
+    }
   } else {
-    sub2(1);
+    if (intNum % 2 == 0) {
+      sub1(1);
+      console.log('subtracting 1 cause turn is odd');
+      compTurn++;
+    } else {
+      sub2(1);
+      console.log('subtracting 2 cause turn is odd');
+      compTurn++;
+    } 
   }
 }
