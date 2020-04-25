@@ -12,6 +12,11 @@ let slider = document.getElementById("sliderVal");
 slider.oninput = function() {
   if (gameStart === false){
     numHTML.innerHTML = this.value;
+  } else {
+    text.scrollTop = text.scrollHeight;
+
+    text.value =
+      text.value + `\nYou can't change the slider when you're already in a game!`;
   }
 }
 
