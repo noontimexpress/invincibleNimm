@@ -8,6 +8,13 @@ let text = document.querySelector("#gameHistory");
 let turns = 0;
 let compTurn = 0;
 let gameStart = false;
+let slider = document.getElementById("sliderVal");
+
+slider.oninput = function() {
+  if (gameStart === false){
+    numHTML.innerHTML = this.value;
+  }
+}
 
 const players = ["You", "Computer"];
 
@@ -80,8 +87,8 @@ function startGame() {
   gameStart = true;
   turns = 0;
   compTurn = 0;
-  numHTML.innerHTML = 22;
-  intNum = 22;
+  numHTML.innerHTML = slider.value;
+  intNum = slider.value;
   text.value = "Game Start! Go first.";
 }
 
