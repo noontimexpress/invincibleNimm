@@ -86,7 +86,6 @@ function startGame() {
 }
 
 function computerTurn() {
-  console.log(compTurn);
   if (intNum === 0) {
     text.value = `Current Value is now 0. You Lose!`;
     gameStart = false;
@@ -94,21 +93,17 @@ function computerTurn() {
     if (compTurn % 2 === 0 && intNum != 0) {
       if (intNum % 2 === 0) {
         sub1(1);
-        console.log("subtracting 2 cause turn is even, num was even");
         compTurn++;
       } else {
         sub2(1);
-        console.log("subtracting 1 cause turn is even, num was odd");
         compTurn++;
       }
     } else {
       if (intNum % 2 === 0) {
         sub2(1);
-        console.log("subtracting 1 cause turn is odd, num was even");
         compTurn++;
       } else {
         sub1(1);
-        console.log("subtracting 2 cause turn is odd, num was odd");
         compTurn++;
       }
     }
