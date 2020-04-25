@@ -34,7 +34,7 @@ function sub1(x) {
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 1. Now ${intNum}.`;
   } else {
-    text.value = `\nCurrent Value is now 0. You Lose!` 
+    text.value = `\nCurrent Value is now 0. You Lose!`;
   }
   turns++;
   if (turns % 2 == 1) {
@@ -57,7 +57,7 @@ function sub2(x) {
     numHTML.innerHTML = intNum;
     text.value =
       text.value + `\n${whoIsPlaying} subtracted by 2. Now ${intNum}.`;
-  } 
+  }
   turns++;
   if (turns % 2 == 1) {
     computerTurn();
@@ -71,32 +71,35 @@ gameBtn.addEventListener("click", function () {
 function startGame() {
   turns = 0;
   compTurn = 0;
-  numHTML.innerHTML = 21;
-  intNum = 21;
+  numHTML.innerHTML = 22;
+  intNum = 22;
   text.value = "Game Start! Go first.";
 }
 
 function computerTurn() {
-  console.log(compTurn);  
+  console.log(compTurn);
+  if (intNum == 0) {
+
+  }
   if (compTurn % 2 == 0) {
     if (intNum % 2 == 0) {
       sub1(1);
-      console.log('subtracting 2 cause turn is even');
+      console.log("subtracting 2 cause turn is even, num was even");
       compTurn++;
     } else {
       sub2(1);
-      console.log('subtracting 1 cause turn is even');
+      console.log("subtracting 1 cause turn is even, num was odd");
       compTurn++;
     }
   } else {
     if (intNum % 2 == 0) {
-      sub1(1);
-      console.log('subtracting 1 cause turn is odd');
+      sub2(1);
+      console.log("subtracting 1 cause turn is odd, num was even");
       compTurn++;
     } else {
-      sub2(1);
-      console.log('subtracting 2 cause turn is odd');
+      sub1(1);
+      console.log("subtracting 2 cause turn is odd, num was odd");
       compTurn++;
-    } 
+    }
   }
 }
